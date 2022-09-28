@@ -1,0 +1,24 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisgtr34/employee-tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chrisgtr34/employee-tracker/issues"
+  },
+  "homepage": "https://github.com/chrisgtr34/employee-tracker#readme",
+  "dependencies": {
+    "asciiart-logo": "^0.2.7",
+    "inquirer": "^9.1.2",
+    "mysql2": "^2.3.3"
+  }
+}
