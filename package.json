@@ -18,7 +18,9 @@
   "homepage": "https://github.com/chrisgtr34/employee-tracker#readme",
   "dependencies": {
     "asciiart-logo": "^0.2.7",
+    "console.table": "^0.10.0",
     "inquirer": "^9.1.2",
-    "mysql2": "^2.3.3"
+    "mysql2": "^2.3.3",
+    "dotenv": "16.0.2"
   }
 }
