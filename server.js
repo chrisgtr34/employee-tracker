@@ -108,3 +108,28 @@ function addEmployees () {
     });
 };
 
+function updateEmployee() {
+    inquirer.prompt ([
+        {
+            type: "input",
+            name:"updateRole",
+            message: "Select employee you want to update"
+        },
+        {
+            type: "input",
+            name: "newRole",
+            message: "Select new role for employee"
+        }
+    ]).then(function (answer) {
+        const updateRole = answer.updateRole;
+        const newRole = answer.newRole;
+        const updateQuery = `UPDATE employee SET role_id = "${newRole}" WHERE id = "${updateRole}"`;
+        db.query(updateQuery, function (err,res) {
+            if (err) throw err;
+            console.log("Employee data has been updated");
+            console.table(res);
+            startPrompt();
+        });
+    });
+}
+
