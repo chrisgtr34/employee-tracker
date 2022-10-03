@@ -71,7 +71,7 @@ const startPrompt = () => {
                 addDepartment();
                 break;
             case "Exit":
-                exit();
+                db.end();
                 break;
                 
                 

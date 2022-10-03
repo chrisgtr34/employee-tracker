@@ -19,6 +19,6 @@
   chrisgtr34@yahoo.com
  
 
-[GitHub repository](https://github.com/chrisgtr34/team-profile-generator)
+[GitHub repository](https://chrisgtr34.github.io/employee-tracker/)
 
-[Demo](https://drive.google.com/file/d/1mI0c0j6XhLw0ecLIMYdch3tF9JBuWLGx/view)
+[Demo](https://drive.google.com/file/d/1aI_RjqS5MAkwQYToB73mEzXXh-f103XQ/view)
