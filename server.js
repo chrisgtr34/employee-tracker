@@ -2,6 +2,17 @@ const inquirer = require('inquirer')
 const mysql = require('mysql2')
 require('console.table');
 
+const logo = require("asciiart-logo");
+init();
+
+// Display logo text, load main prompts
+function init() {
+  const logoText = logo({ name: "Employee Database" }).render();
+
+  console.log(logoText);
+}
+
+
 // Connect to Database
 const db = mysql.createConnection(
     {
