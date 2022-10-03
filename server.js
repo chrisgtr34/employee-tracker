@@ -1,37 +1,42 @@
 const inquirer = require('inquirer')
 const mysql = require('mysql2')
-const consoleTable = require('console.table')
+require('console.table');
 
 // Connect to Database
 const db = mysql.createConnection(
     {
-      host: "localhost",
-      user: 'root',
-      // MySQL password
-      password: process.env.DB_PW,
-      database: 'employees'
+        host: 'localhost',
+        user: 'root',
+        // MySQL password
+        password: '@Rotaryguy34',
+        database: 'employees'
     },
     console.log(`Accessing employees database.`)
 );
-  
+db.connect((err) => {
+    if (err) throw err;
+    startPrompt();
+})
+
+
 // Starts prompt
 const startPrompt = () => {
-    inquirer.prompt ([
+    inquirer.prompt([
         {
-        type: "list",
-        message: "Please select from the following",
-        name: "startPrompt",
-        choices: [
-            "View All Employees",
-            "Add Employee",
-            "Update Employee Role",
-            "View All Roles",
-            "Add Role",
-            "View All Departments",
-            "Add Department",
-            "Exit"]
+            type: "list",
+            message: "Please select from the following",
+            name: "startPrompt",
+            choices: [
+                "View Employees",
+                "Add Employee",
+                "Update Employee Role",
+                "View Roles",
+                "Add Role",
+                "View Departments",
+                "Add Department",
+                "Exit"]
         }
-    ]).then(function(answer) {
+    ]).then(function (answer) {
         switch (answer.startPrompt) {
             case "View Employees":
                 showEmployees();
@@ -57,12 +62,12 @@ const startPrompt = () => {
             case "Exit":
                 exit();
                 break;
-            }
-        })
-    };
-    
+        }
+    })
+};
 
-function showEmployees () {
+
+function showEmployees() {
     const query = `SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary, CONCAT (manager.first_name, " ", manager.last_name) AS manager FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id LEFT JOIN employee manager ON employee.manager_id = manager.id`;
     db.query(query, function (err, res) {
         if (err) throw err;
@@ -71,8 +76,8 @@ function showEmployees () {
     });
 }
 
-function addEmployees () {
-    inquirer.prompt ([
+function addEmployees() {
+    inquirer.prompt([
         {
             type: "input",
             name: "firstName",
@@ -109,10 +114,10 @@ function addEmployees () {
 };
 
 function updateEmployee() {
-    inquirer.prompt ([
+    inquirer.prompt([
         {
             type: "input",
-            name:"updateRole",
+            name: "updateRole",
             message: "Select an Employee you wish to update"
         },
         {
@@ -124,7 +129,7 @@ function updateEmployee() {
         const updateRole = answer.updateRole;
         const newRole = answer.newRole;
         const updateQuery = `UPDATE employee SET role_id = "${newRole}" WHERE id = "${updateRole}"`;
-        db.query(updateQuery, function (err,res) {
+        db.query(updateQuery, function (err, res) {
             if (err) throw err;
             console.log("Employee data has been updated");
             console.table(res);
@@ -133,7 +138,7 @@ function updateEmployee() {
     });
 }
 
-function viewRoles () {
+function viewRoles() {
     var query = `SELECT FROM role`;
     db.query(query, function (err, res) {
         if (err) throw err;
@@ -142,8 +147,8 @@ function viewRoles () {
     });
 };
 
-function newRole () {
-    inquirer.prompt ([
+function newRole() {
+    inquirer.prompt([
         {
             type: "input",
             name: "roleName",
@@ -173,7 +178,7 @@ function newRole () {
     });
 };
 
-function viewDepartments () {
+function viewDepartments() {
     var query = `SELECT * FROM department`;
     db.query(query, function (err, res) {
         if (err) throw err;
@@ -182,10 +187,10 @@ function viewDepartments () {
     });
 };
 
-function addDepartment () {
-    inquirer.prompt ([
+function addDepartment() {
+    inquirer.prompt([
         {
-            type:"input",
+            type: "input",
             name: "newDept",
             message: "Enter the new department name"
         }

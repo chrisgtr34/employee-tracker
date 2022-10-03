@@ -1,5 +1,4 @@
 
-
 const logo = require("asciiart-logo");
 init();
 
