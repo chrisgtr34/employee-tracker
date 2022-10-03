@@ -62,6 +62,8 @@ const startPrompt = () => {
             case "Exit":
                 exit();
                 break;
+                
+                
         }
     })
 };
@@ -103,10 +105,10 @@ function addEmployees() {
         const lastName = answer.lastName;
         const roleId = answer.roleId;
         const managerId = answer.managerId;
-        const query = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ("${firstName}","${lastName}",${roleId},${managerId})`;
+        const query = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ("${firstName}","${lastName}",${roleId},${managerId}`;
         db.query(query, function (err, res) {
             if (err) throw err;
-            console.log("Employee data has been succesffuly added");
+            console.log("Employee data has been successfully added");
             console.table(res);
             startPrompt();
         });
