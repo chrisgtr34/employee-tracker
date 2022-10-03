@@ -46,7 +46,7 @@ const startPrompt = () => {
                 viewRoles();
                 break;
             case "Add Role":
-                addRole();
+                newRole();
                 break;
             case "View All Departments":
                 viewDepartments();
@@ -113,12 +113,12 @@ function updateEmployee() {
         {
             type: "input",
             name:"updateRole",
-            message: "Select employee you want to update"
+            message: "Select an Employee you wish to update"
         },
         {
             type: "input",
             name: "newRole",
-            message: "Select new role for employee"
+            message: "Select a new role for Employee"
         }
     ]).then(function (answer) {
         const updateRole = answer.updateRole;
@@ -132,4 +132,44 @@ function updateEmployee() {
         });
     });
 }
+
+function viewRoles () {
+    var query = `SELECT FROM role`;
+    db.query(query, function (err, res) {
+        if (err) throw err;
+        console.table(res);
+        startPrompt();
+    });
+};
+
+function newRole () {
+    inquirer.prompt ([
+        {
+            type: "input",
+            name: "roleName",
+            message: "Enter the employee's new role title"
+        },
+        {
+            type: "input",
+            name: "roleSalary",
+            message: "Enter the employee's salary"
+        },
+        {
+            type: "input",
+            name: "deptId",
+            message: "Enter the employee's department ID"
+        },
+    ]).then(function (answer) {
+        const empTitle = answer.roleName;
+        const empSalary = answer.roleSalary;
+        const deptId = answer.deptId;
+        const query = `INSERT INTO role (title, salary, department_id) VALUES ("${empTitle}","${empSalary}","${deptId}")`;
+        db.query(query, function (err, res) {
+            if (err) throw err;
+            console.log("Employee Role has been added successfully");
+            console.table(res);
+            startPrompt();
+        });
+    });
+};
 
