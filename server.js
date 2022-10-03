@@ -42,13 +42,13 @@ const startPrompt = () => {
             case "Update Employee Role":
                 updateEmployee();
                 break;
-            case "View All Roles":
+            case "View Roles":
                 viewRoles();
                 break;
             case "Add Role":
                 newRole();
                 break;
-            case "View All Departments":
+            case "View Departments":
                 viewDepartments();
                 break;
             case "Add Department":
@@ -173,3 +173,30 @@ function newRole () {
     });
 };
 
+function viewDepartments () {
+    var query = `SELECT * FROM department`;
+    db.query(query, function (err, res) {
+        if (err) throw err;
+        console.table(res);
+        startPrompt();
+    });
+};
+
+function addDepartment () {
+    inquirer.prompt ([
+        {
+            type:"input",
+            name: "newDept",
+            message: "Enter the new department name"
+        }
+    ]).then(function (answer) {
+        const newDept = answer.newDept;
+        const query = `INSERT department (name) VALUES ("${newDept}")`;
+        db.query(query, function (err, res) {
+            if (err) throw err;
+            console.log("Department has been added successfully");
+            console.table(res);
+            startPrompt();
+        });
+    });
+};
