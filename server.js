@@ -8,11 +8,8 @@ const db = mysql.createConnection(
       host: "localhost",
       user: 'root',
       // MySQL password
-      password: '@Rotaryguy34',
+      password: process.env.DB_PW,
       database: 'employees'
     },
     console.log(`Accessing employees database.`)
-  );
-  
-
-
+);
