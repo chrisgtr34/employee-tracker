@@ -19,6 +19,6 @@
   chrisgtr34@yahoo.com
  
 
-[GitHub repository](https://chrisgtr34.github.io/employee-tracker/)
+[GitHub repository](https://github.com/chrisgtr34/employee-tracker)
 
 [Demo](https://drive.google.com/file/d/1aI_RjqS5MAkwQYToB73mEzXXh-f103XQ/view)
